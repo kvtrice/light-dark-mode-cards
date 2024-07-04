@@ -10,28 +10,20 @@ import { useEffect, useState } from "react";
 // Each card should have it's own light or dark mode. It shouldn't affect the whole application
 
 const Card = () => {
-	const [currentHour, setCurrentHour] = useState(
-		Math.floor(Math.random() * 24 + 1)
-	);
-	const [isDark, setIsDark] = useState(false);
+	const initialHour = Math.floor(Math.random() * 24 + 1);
+	const [currentHour, setCurrentHour] = useState(initialHour);
+	const [isDark, setIsDark] = useState(initialHour < 6 || initialHour > 18);
 	let imageSrc = isDark ? "/moon.png" : "/sun.png";
 
 	const generateRandomNumber = () => {
 		const randomNum = Math.floor(Math.random() * 24 + 1);
 		setCurrentHour(randomNum);
+		setIsDark(randomNum < 6 || randomNum > 18);
 	};
 
 	const handleDarkMode = () => {
 		setIsDark(!isDark);
 	};
-
-	useEffect(() => {
-		if (currentHour >= 6 && currentHour <= 18) {
-			setIsDark(false);
-		} else {
-			setIsDark(true);
-		}
-	}, [currentHour]);
 
 	let buttonClasses = isDark
 		? styles.button + " " + styles["button-dark"]
