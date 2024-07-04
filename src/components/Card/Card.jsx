@@ -14,7 +14,7 @@ const Card = () => {
 		Math.floor(Math.random() * 24 + 1)
 	);
 	const [isDark, setIsDark] = useState(false);
-	let imageSrc = isDark ? "src/assets/moon.png" : "src/assets/sun.png";
+	let imageSrc = isDark ? "/moon.png" : "/sun.png";
 
 	const generateRandomNumber = () => {
 		const randomNum = Math.floor(Math.random() * 24 + 1);
